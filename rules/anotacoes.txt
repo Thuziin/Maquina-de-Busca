@@ -1,0 +1,25 @@
+INDEXAÇÃO:
+
+    Criação de um índice invertido.
+        - ideia: criar algo parecido com o da prova para realizar o armazenamento;
+
+    Normalização das palavras antes de serem inseridas.
+        - remoção de acentos/caracteres especiais;
+        - remover caracteres que nao sejam a-z e A-Z;
+        - deixar tudo em letra minuscula;
+        - obs: todos os caracteres pertencem a tabela ASCII
+
+RECUPERAÇÃO:
+
+    Exibir um elemento por linha;
+    Ordenado por ordem lexicografica (maior -> menor)
+    Ordem de palavras deve ser desconsiderada
+    Exibir os documentos que contem todos os elementos da consulta
+
+GIT:
+    Será utilizado como avaliação;
+    Deve ter participação de todos os integrantes;
+    Documentação do código deve estar presente;
+
+TESTE:
+    Realizar testes, mas ainda nao tenho ideia do que fazer
