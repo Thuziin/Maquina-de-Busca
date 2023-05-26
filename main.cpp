@@ -6,10 +6,12 @@
 
 using namespace std;
 
+// Para o programa compilar é necessário usar a versão do c++17
+
 int main () {
 	string caminho = "./documents";
-	Document sla(caminho);
-	vector<string> documents = sla.DocumentReader();
+	Document arquivo(caminho);
+	vector<string> documents = arquivo.DocumentReader();
 
 	for (auto document: documents) {
 		cout << document << endl;
