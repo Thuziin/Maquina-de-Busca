@@ -14,7 +14,7 @@ int main () {
 	string caminho = "./documents";
 	Document arquivo(caminho);
 	vector<pair<string, vector<string>>> documentos = arquivo.DocumentReader();
-	<map<string, map<string, int> documentoCerto;
+	map<string, map<string, int>> documentoCerto;
 
 	for (const auto it: documentos) {
 		for (auto palavra: it.second) {
