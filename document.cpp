@@ -32,7 +32,7 @@ class Document {
 
 						// Percorrendo o arquivo atual e guardando palavra por palavra em um vector de palavras
 						while (file >> palavra) {
-							palavras.push_back(normalizarPalavra(palavra));
+							palavras.push_back(palavra);
 						}
 
 						// Guardando no vector de documentos o nome do documento atual e suas respectivas palavras
@@ -41,36 +41,6 @@ class Document {
 				}
 			}
 			return documentos;
-		}
-
-		// Função que realiza todas as correções necessárias
-
-		string normalizarPalavra (const string palavra) {
-			string palavraNormalizada = palavra;
-		    // Transformando a palavara para minúscula
-		    transform(
-		        palavraNormalizada.begin(), palavraNormalizada.end(), palavraNormalizada.begin(),[](unsigned char c){
-		            return tolower(c); 
-		    });
-
-		    // Removendo caracteres  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-		    palavraNormalizada.erase(
-		        remove_if(palavraNormalizada.begin(), palavraNormalizada.end(), [](unsigned char c) {
-		            return ispunct(c);
-		        }),
-		    palavraNormalizada.end());
-
-		    // Removendo numeração
-		    palavraNormalizada.erase(
-		        remove_if(palavraNormalizada.begin(), palavraNormalizada.end(), [](unsigned char c) {
-		            return isdigit(c);
-		        }),
-		    palavraNormalizada.end());
-		    
-		    // Removendo acento e cedilha
-		        
-
-		    return palavraNormalizada;
 		}
 
 	private:
