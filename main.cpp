@@ -4,6 +4,7 @@
 #include <map>
 
 #include "document.cpp"
+#include "index.cpp"
 
 using namespace std;
 
@@ -16,6 +17,26 @@ int main () {
 	Document arquivo(caminho);
     
 	vector<pair<string, vector<string>>> documentos = arquivo.DocumentReader();
+
+	Index elemento(documentos);
+	
+	bool escolha = true;
+	while (escolha) {
+		vector<string> query;
+		string word;
+		cout << "Insira a(s) palavra(s) que deseja (digite exit para terminar): ";
+		while (cin >> word) {
+			if (word == "exit") {
+				escolha = false;
+			} else {
+				query.push_back(word);
+				elemento.Pesquisa(query);
+			}
+			break;
+		}
+		break;
+		
+	}
 
 	return 0;
 }

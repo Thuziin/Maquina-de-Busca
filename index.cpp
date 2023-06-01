@@ -43,14 +43,35 @@ class Index {
             return palavraNormalizada;
         }
 
-        void Pesquisa () {
-            for (auto it: dicionario_) {
-                cout << it.first << endl;
-                for (auto i: it.second) {
-                    cout << i.first << " - ";
+        void Pesquisa (vector<string> pesquisa) {
+            map<string, int> resultado;            
+            string query;
+            for (auto j: pesquisa) {
+                query = normalizarPalavra(j);
+                for (auto it: dicionario_) {
+                    for (auto info: it.second) {
+                        if (info.first == query) {
+                            resultado[it.first] = info.second;
+                        }
+                    }
                 }
-                cout << endl;
             }
+
+            if (resultado.empty()) {
+                cout << "A palavra passada " << query << " não está em nenhum documento" << endl;
+            } else {
+                for (auto k: resultado) {
+                    cout << k.first << endl;
+                }
+            }
+
+            // for (auto it: dicionario_) {
+            //     cout << it.first << endl;
+            //     for (auto i: it.second) {
+            //         cout << i.first << " - ";
+            //     }
+            //     cout << endl;
+            // }
         }
     
     private:
