@@ -1,7 +1,11 @@
 {
     "files.associations": {
         "vector": "cpp",
+<<<<<<< HEAD
         "ostream": "cpp",
+=======
+        "iostream": "cpp",
+>>>>>>> development
         "string": "cpp"
     }
 }
