@@ -37,23 +37,12 @@ string normalizarPalavra (const string palavra) {
 }
 
 int main () {
+
 	string caminho = "./documents";
+
 	Document arquivo(caminho);
+    
 	vector<pair<string, vector<string>>> documentos = arquivo.DocumentReader();
-	map<string, map<string, int>> documentoCerto;
 
-	for (const auto it: documentos) {
-		for (auto palavra: it.second) {
-			documentoCerto[it.first][normalizarPalavra(palavra)]++;
-		}
-	}
-
-	for (const auto it: documentoCerto) {
-		cout << "Documento: " << it.first << endl;
-		for (const auto info: it.second) {
-			cout << "Palavra: " << info.first << " - " << "Qtd: " << info.second << endl;
-		}
-		cout << endl;
-	}
 	return 0;
 }
