@@ -3,7 +3,7 @@
 #include <vector>
 #include <map>
 
-#include "document.cpp"
+#include "document.h"
 #include "index.cpp"
 
 using namespace std;
