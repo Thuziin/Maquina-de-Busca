@@ -44,7 +44,7 @@ class Index {
             return palavraNormalizada;
         }
 
-        vector<string> Pesquisa (string pesquisa) {
+        vector<pair<string, int>> Pesquisa (string pesquisa) {
             vector<string> todasPalavras;
             string palavra;
             istringstream iss(pesquisa);
@@ -52,7 +52,7 @@ class Index {
                 todasPalavras.push_back(normalizarPalavra(palavra));
             }           
 
-            vector<string>resultado;
+            vector<pair<string,int>>resultado;
 
             for (auto documento: dicionario_) {
                 bool todasPalavrasPresentes = true;
@@ -64,7 +64,11 @@ class Index {
                 }
 
                 if (todasPalavrasPresentes) {
-                    resultado.push_back(documento.first);
+                    int frequencia = 0;
+                    for (const auto& palavra: todasPalavras) {
+                        frequencia += documento.second.at(palavra);
+                    }
+                    resultado.push_back(make_pair(documento.first, frequencia));
                 }
             }
             return resultado;

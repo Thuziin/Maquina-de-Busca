@@ -10,16 +10,20 @@ using namespace std;
 
 // Para o programa compilar é necessário usar a versão do c++17
 
+// Definindo um tipo para o par de documento e frequência
+typedef std::pair<std::string, int> DocumentoFrequencia;
+
+// Função para comparar dois pares com base na frequência (usada pela std::sort)
+bool compararFrequencia(const DocumentoFrequencia& a, const DocumentoFrequencia& b) {
+    return a.second > b.second;  // Ordem crescente
+}
+
 int main () {
-
 	string caminho = "./documents";
-
-	Document arquivo(caminho);
-    
+	Document arquivo(caminho);    
 	vector<pair<string, vector<string>>> documentos = arquivo.DocumentReader();
 
-	Index elemento(documentos);
-	
+	Index elemento(documentos);	
 	while (true) {
 		string palavra;
 		cout << "Informe qual(s) palavra(s) deseja: (digite exit para encerar): ";
@@ -28,13 +32,16 @@ int main () {
 			cout << "Encerrando ..." << endl;
 			break;
 		}
-		vector<string> resultado = elemento.Pesquisa(palavra);
 
+		vector<pair<string, int>> resultado = elemento.Pesquisa(palavra);
+		set<string> documentoOrdenados;
+		
 		if (resultado.empty()) {
-			cout << "A(s) palavra(s) pesquisada(s) não foram encontrada(s)!" << endl;
+			cout << "Sua pesquisa não apresenta resultado!" << endl;
 		} else {
+			sort(resultado.begin(), resultado.end(), compararFrequencia);
 			for (auto it: resultado) {
-				cout << it << endl;
+				cout << it.first << endl;
 			}
 		}
 
