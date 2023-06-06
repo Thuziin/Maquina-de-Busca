@@ -4,19 +4,11 @@
 #include <map>
 
 #include "document.h"
-#include "index.cpp"
+#include "index.h"
 
 using namespace std;
 
 // Para o programa compilar é necessário usar a versão do c++17
-
-// Definindo um tipo para o par de documento e frequência
-typedef std::pair<std::string, int> DocumentoFrequencia;
-
-// Função para comparar dois pares com base na frequência (usada pela std::sort)
-bool compararFrequencia(const DocumentoFrequencia& a, const DocumentoFrequencia& b) {
-    return a.second > b.second;  // Ordem crescente
-}
 
 int main () {
 	string caminho = "./documents";
@@ -33,13 +25,14 @@ int main () {
 			break;
 		}
 
+		// Realizando a pesquisa de acordo com o pedido do user
 		vector<pair<string, int>> resultado = elemento.Pesquisa(palavra);
-		set<string> documentoOrdenados;
 		
+		// Verificando se o resultado da pesquisa é vazia
 		if (resultado.empty()) {
 			cout << "Sua pesquisa não apresenta resultado!" << endl;
 		} else {
-			sort(resultado.begin(), resultado.end(), compararFrequencia);
+			// Percorrendo o resultado da pesquisa e monstrando na tela.
 			for (auto it: resultado) {
 				cout << it.first << endl;
 			}
