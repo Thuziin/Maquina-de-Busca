@@ -20,22 +20,24 @@ int main () {
 
 	Index elemento(documentos);
 	
-	bool escolha = true;
-	while (escolha) {
-		vector<string> query;
-		string word;
-		cout << "Insira a(s) palavra(s) que deseja (digite exit para terminar): ";
-		while (cin >> word) {
-			if (word == "exit") {
-				escolha = false;
-			} else {
-				query.push_back(word);
-				elemento.Pesquisa(query);
-			}
+	while (true) {
+		string palavra;
+		cout << "Informe qual(s) palavra(s) deseja: (digite exit para encerar): ";
+		getline(cin, palavra);
+		if (palavra == "exit") {
+			cout << "Encerrando ..." << endl;
 			break;
 		}
-		break;
-		
+		vector<string> resultado = elemento.Pesquisa(palavra);
+
+		if (resultado.empty()) {
+			cout << "A(s) palavra(s) pesquisada(s) não foram encontrada(s)!" << endl;
+		} else {
+			for (auto it: resultado) {
+				cout << it << endl;
+			}
+		}
+
 	}
 
 	return 0;

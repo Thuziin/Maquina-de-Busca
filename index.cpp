@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <sstream>
 
 using namespace std;
 
@@ -43,35 +44,30 @@ class Index {
             return palavraNormalizada;
         }
 
-        void Pesquisa (vector<string> pesquisa) {
-            map<string, int> resultado;            
-            string query;
-            for (auto j: pesquisa) {
-                query = normalizarPalavra(j);
-                for (auto it: dicionario_) {
-                    for (auto info: it.second) {
-                        if (info.first == query) {
-                            resultado[it.first] = info.second;
-                        }
+        vector<string> Pesquisa (string pesquisa) {
+            vector<string> todasPalavras;
+            string palavra;
+            istringstream iss(pesquisa);
+            while (iss >> palavra) {
+                todasPalavras.push_back(normalizarPalavra(palavra));
+            }           
+
+            vector<string>resultado;
+
+            for (auto documento: dicionario_) {
+                bool todasPalavrasPresentes = true;
+                for (const auto& palavra: todasPalavras) {
+                    if (documento.second.find(palavra) == documento.second.end()) {
+                        todasPalavrasPresentes = false;
+                        break;
                     }
                 }
-            }
 
-            if (resultado.empty()) {
-                cout << "A palavra passada " << query << " não está em nenhum documento" << endl;
-            } else {
-                for (auto k: resultado) {
-                    cout << k.first << endl;
+                if (todasPalavrasPresentes) {
+                    resultado.push_back(documento.first);
                 }
             }
-
-            // for (auto it: dicionario_) {
-            //     cout << it.first << endl;
-            //     for (auto i: it.second) {
-            //         cout << i.first << " - ";
-            //     }
-            //     cout << endl;
-            // }
+            return resultado;
         }
     
     private:
