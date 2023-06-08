@@ -1,5 +1,9 @@
 #include "index.h"
 
+#include <algorithm>
+#include <cctype>
+#include <sstream>
+
 using namespace std;
 
 Index::Index (vector<pair<string, vector<string>>> documento) {

@@ -1,14 +1,8 @@
 #ifndef DOCUMENT_H_
 #define DOCUMENT_H_
 
-#include <iostream>
 #include <string>
 #include <vector>
-
-#include <filesystem>
-#include <fstream>
-#include <algorithm>
-#include <cctype>
 
 using namespace std;
 

@@ -1,15 +1,9 @@
 #ifndef INDEX_H_
 #define INDEX_H
 
-#include <iostream>
 #include <string>
 #include <vector>
 #include <map>
-#include <set>
-
-#include <algorithm>
-#include <cctype>
-#include <sstream>
 
 using namespace std;
 
