@@ -6,6 +6,10 @@
 
 using namespace std;
 
+struct falhaDocumento {
+    string documentoComErro;
+};
+
 class Document {
     public:
         // Construtor que inicializar recebendo o caminho para o diretório com os documentos .txt

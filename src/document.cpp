@@ -19,6 +19,10 @@ vector<pair<string, vector<string>>> Document::DocumentReader () {
 			if (entry.is_regular_file()) {
 				ifstream file(entry.path());
 
+				if (!file) {
+					throw falhaDocumento{(entry.path().filename().string())};
+				}
+				
 				if (file) {
 					string palavra;
 					vector<string> palavras;
