@@ -17,7 +17,7 @@ using namespace std;
 
 int main () {
 	try {
-		string path = "./documents";
+		string path = "./documentos";
 		Document files(path);    
 		vector<pair<string, vector<string>>> documents = files.DocumentReader();
 
