@@ -16,23 +16,23 @@ using namespace std;
 class Index {
     public:
         // Construtor da classe Index.
-        Index (vector<pair<string, vector<string>>> documento);
+        Index (vector<pair<string, vector<string>>> documents);
 
         // Método que normaliza as palavras dos documentos/pesquisa.
-        string normalizarPalavra (const string palavra);
+        string standardizeWord (const string word);
 
         // Método que separa termo a termo os elementos passados para Pesquisa().
-        vector<string> divisaoPalavra (string pesquisa);
+        vector<string> wordDivision (string query);
 
         // Método que faz a comparação para a ordenação da Pesquisa (1º maior repetição,
         // 2º ordem lexicográfica)
         static bool compare (pair<string, int> a, pair<string, int> b);
 
         // Método que realiza pesquisa com base na entrada do usuário
-        vector<pair<string, int>> Pesquisa (string pesquisa);
+        vector<pair<string, int>> Search (string query);
         
     private:
-        map<string, map<string, int>> dicionario_; // Dicionario contendo os informações dos documentos.      
+        map<string, map<string, int>> dictionary_; // Dicionario contendo os informações dos documentos.      
 };
 
 #endif

@@ -17,32 +17,32 @@ using namespace std;
 
 int main () {
 	try {
-		string caminho = "./documents";
-		Document arquivo(caminho);    
-		vector<pair<string, vector<string>>> documentos = arquivo.DocumentReader();
+		string path = "./documents";
+		Document files(path);    
+		vector<pair<string, vector<string>>> documents = files.DocumentReader();
 
-		Index elemento(documentos);	
+		Index element(documents);	
 		
 		while (true) {
-			string palavra;
+			string word;
 			cout << "Informe qual(s) palavra(s) deseja: (digite exit para encerar): ";
-			getline(cin, palavra);
-			if (palavra == "exit") {
+			getline(cin, word);
+			if (word == "exit") {
 				cout << "Encerrando ..." << endl;
 				break;
 			}
 
 			// Realizando a pesquisa de acordo com o pedido do user
-			vector<pair<string, int>> resultado = elemento.Pesquisa(palavra);
+			vector<pair<string, int>> result = element.Search(word);
 			
 			// Verificando se o resultado da pesquisa é vazia
-			if (resultado.empty()) {
+			if (result.empty()) {
 				cout << "Sua pesquisa não apresenta resultado!" << endl << endl;
 			} else {
 				// Percorrendo o resultado da pesquisa e monstrando na tela.
 				cout << "Listando documentos: " << endl;
 				int i = 1;
-				for (auto it: resultado) {
+				for (auto it: result) {
 					cout << i << ") " << it.first << endl;
 					i++;
 				}
@@ -51,9 +51,9 @@ int main () {
 			}
 
 		}
-	} catch (falhaDocumento& e) {
+	} catch (documentFailure& e) {
 		// Tratamento da excessão caso algum documento não tenha sido lido.
-		cout << "Não foi possível ler o documento: " << e.documentoComErro << endl;
+		cout << "Não foi possível ler o documento: " << e.faultyDocument << endl;
 	}
 
 	return 0;

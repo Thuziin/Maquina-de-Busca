@@ -9,8 +9,8 @@ using namespace std;
 /**
  * @brief: struct falhaDocumento: armazena o(s) nome(s) do(s) documento(s) que não foram possíveis de ler.
 */
-struct falhaDocumento {
-    string documentoComErro;
+struct documentFailure {
+    string faultyDocument;
 };
 
 /**
@@ -20,13 +20,13 @@ struct falhaDocumento {
 class Document {
     public:
         // Construtor da classe Document.
-        Document (string caminho);
+        Document (string path);
 
         // Método que realiza leitura e armazena os dados dos documentos.
         vector<pair<string, vector<string>>> DocumentReader();
 
     private:
-        string caminhoDiretorio_; // Váriavel que recebe o caminho para o diretório dos documentos.
+        string directoryPath_; // Váriavel que recebe o caminho para o diretório dos documentos.
 };
 
 #endif

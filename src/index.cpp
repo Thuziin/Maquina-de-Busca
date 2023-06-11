@@ -6,76 +6,76 @@
 
 using namespace std;
 
-Index::Index (vector<pair<string, vector<string>>> documento) {
-    for (auto it: documento) {
-        for (auto palavra: it.second) {
-            dicionario_[it.first][normalizarPalavra(palavra)]++;
+Index::Index (vector<pair<string, vector<string>>> document) {
+    for (auto it: document) {
+        for (auto word: it.second) {
+            dictionary_[it.first][standardizeWord(word)]++;
         }
     }
 }
 
-string Index::normalizarPalavra (string palavra) {
-    string palavraNormalizada = palavra;
+string Index::standardizeWord (string word) {
+    string standardWord = word;
     // Transformando a palavara para minúscula
     transform(
-        palavraNormalizada.begin(), palavraNormalizada.end(), palavraNormalizada.begin(),[](unsigned char c){
+        standardWord.begin(), standardWord.end(), standardWord.begin(),[](unsigned char c){
             return tolower(c); 
     });
 
      // Removendo caracteres  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-    palavraNormalizada.erase(
-        remove_if(palavraNormalizada.begin(), palavraNormalizada.end(), [](unsigned char c) {
+    standardWord.erase(
+        remove_if(standardWord.begin(), standardWord.end(), [](unsigned char c) {
             return ispunct(c);
         }),
-    palavraNormalizada.end());
+    standardWord.end());
 
     // Removendo numeração
-    palavraNormalizada.erase(
-        remove_if(palavraNormalizada.begin(), palavraNormalizada.end(), [](unsigned char c) {
+    standardWord.erase(
+        remove_if(standardWord.begin(), standardWord.end(), [](unsigned char c) {
             return isdigit(c);
         }),
-    palavraNormalizada.end());
+    standardWord.end());
                 
-    return palavraNormalizada;
+    return standardWord;
 }
 
-vector<string> Index::divisaoPalavra(string pesquisa) {
-    vector<string> todasPalavras;
-    string palavra;
+vector<string> Index::wordDivision(string query) {
+    vector<string> Words;
+    string word;
     // Leitura de uma string e divisão termo a termo dela.
-    istringstream iss(pesquisa);
-    while (iss >> palavra) {
-        todasPalavras.push_back(normalizarPalavra(palavra));
+    istringstream iss(query);
+    while (iss >> word) {
+        Words.push_back(standardizeWord(word));
     }
-    return todasPalavras;
+    return Words;
 }
 
 bool Index::compare (pair<string, int> a, pair<string, int> b) {
     return a.second > b.second; 
 } 
 
-vector<pair<string, int>> Index::Pesquisa (string pesquisa) {        
-    vector<string> todasPalavras = divisaoPalavra(pesquisa);
-    vector<pair<string,int>>resultado;
+vector<pair<string, int>> Index::Search (string query) {        
+    vector<string> Words = wordDivision(query);
+    vector<pair<string,int>>result;
 
-    for (auto documento: dicionario_) {
-        bool todasPalavrasPresentes = true;
-        for (const auto& palavra: todasPalavras) {
-            if (documento.second.find(palavra) == documento.second.end()) {
-                todasPalavrasPresentes = false;
+    for (auto document: dictionary_) {
+        bool allWordsPresent = true;
+        for (const auto& word: Words) {
+            if (document.second.find(word) == document.second.end()) {
+                allWordsPresent = false;
                 break;
             }
         }
 
-         if (todasPalavrasPresentes) {
-            int frequencia = 0;
-            for (const auto& palavra: todasPalavras) {
-                frequencia += documento.second.at(palavra);
+         if (allWordsPresent) {
+            int frequency = 0;
+            for (const auto& word: Words) {
+                frequency += document.second.at(word);
             }
-            resultado.push_back(make_pair(documento.first, frequencia));
+            result.push_back(make_pair(document.first, frequency));
         }
     }
     // Ordenação do resultado de acordo com os critérios estabelecidos.
-    sort(resultado.begin(), resultado.end(), compare);
-    return resultado;
+    sort(result.begin(), result.end(), compare);
+    return result;
 }
