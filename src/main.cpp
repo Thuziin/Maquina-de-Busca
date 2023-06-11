@@ -8,7 +8,12 @@
 
 using namespace std;
 
-// Para o programa compilar é necessário usar a versão do c++17
+/**
+ * @brief main(): Função que realiza a comunição entre todas as classes.
+ * Permite realizar pesquisa e caso aconteça algum imprevisto é informado ao user.
+ * 
+ * @warning Necessário que a versão do c++ utilizada para compilar seja a 17.
+*/
 
 int main () {
 	try {
@@ -17,6 +22,7 @@ int main () {
 		vector<pair<string, vector<string>>> documentos = arquivo.DocumentReader();
 
 		Index elemento(documentos);	
+		
 		while (true) {
 			string palavra;
 			cout << "Informe qual(s) palavra(s) deseja: (digite exit para encerar): ";
@@ -46,6 +52,7 @@ int main () {
 
 		}
 	} catch (falhaDocumento& e) {
+		// Tratamento da excessão caso algum documento não tenha sido lido.
 		cout << "Não foi possível ler o documento: " << e.documentoComErro << endl;
 	}
 

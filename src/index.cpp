@@ -42,6 +42,7 @@ string Index::normalizarPalavra (string palavra) {
 vector<string> Index::divisaoPalavra(string pesquisa) {
     vector<string> todasPalavras;
     string palavra;
+    // Leitura de uma string e divisão termo a termo dela.
     istringstream iss(pesquisa);
     while (iss >> palavra) {
         todasPalavras.push_back(normalizarPalavra(palavra));
@@ -74,6 +75,7 @@ vector<pair<string, int>> Index::Pesquisa (string pesquisa) {
             resultado.push_back(make_pair(documento.first, frequencia));
         }
     }
+    // Ordenação do resultado de acordo com os critérios estabelecidos.
     sort(resultado.begin(), resultado.end(), compare);
     return resultado;
 }
