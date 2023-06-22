@@ -1,5 +1,5 @@
 CC = c++ -I include
-CFLAGS = -std=c++17
+CXXFLAGS = -std=c++17
 
 main: obj/main.o obj/document.o obj/index.o
 	@ ${CC} ${CFLAGS} $^ -o main
